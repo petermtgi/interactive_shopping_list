@@ -1,4 +1,4 @@
-const shoppingList = ['Yeezy', 'Mrenda', 'Matumbo'];
+const shoppingList = [];
 
 //  Utility functions for DOM manipulation
 function createAnElement(element) {
@@ -32,7 +32,7 @@ const ol = select('ol');
 listen(document, 'DOMContentLoaded', displayItems);
 
 function displayItems() {
-	ol.innerHTML = ""
+	ol.innerHTML = '';
 	shoppingList.forEach(createAListItem);
 }
 
@@ -67,5 +67,19 @@ function addItem(event) {
 
 	displayItems();
 
-	event.target.reset()
+	event.target.reset();
+}
+
+// const deleteButton = document.querySelector('.delete');
+const deleteButton = select('.delete');
+
+// deleteButton.addEventListener("click", clearList)
+listen(deleteButton, 'click', clearList);
+
+function clearList() {
+	// shoppingList.length = 0
+
+	shoppingList.splice(0);
+
+	displayItems();
 }
