@@ -32,6 +32,7 @@ const ol = select('ol');
 listen(document, 'DOMContentLoaded', displayItems);
 
 function displayItems() {
+	ol.innerHTML = ""
 	shoppingList.forEach(createAListItem);
 }
 
@@ -51,4 +52,20 @@ function createAListItem(item) {
 
 function toggleChecked(li) {
 	li.classList.toggle('checked');
+}
+
+// const form = document.querySelector("form")
+const form = select('form');
+
+// form.addEventListener("submit", addItem)
+listen(form, 'submit', addItem);
+
+function addItem(event) {
+	event.preventDefault();
+
+	shoppingList.push(event.target[0].value);
+
+	displayItems();
+
+	event.target.reset()
 }
