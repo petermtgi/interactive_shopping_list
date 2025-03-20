@@ -25,8 +25,10 @@ function addAttribute(element, attribute, content) {
 	return element.setAttribute(attribute, content);
 }
 
+// const ol = document.querySelector("ol")
 const ol = select('ol');
 
+// document.addEventListener('DOMContentLoaded', displayItems);
 listen(document, 'DOMContentLoaded', displayItems);
 
 function displayItems() {
@@ -34,13 +36,19 @@ function displayItems() {
 }
 
 function createAListItem(item) {
+	// const li = document.createElement('li');
 	const li = createAnElement('li');
+
+	// li.innerText = item
 	addText(li, item);
+
+	// ol.appendChild(li)
 	appendChild(ol, li);
 
-	listen(li, 'click', toggleChecked);
+	// li.addEventListener('click', () => toggleChecked(li));
+	listen(li, 'click', () => toggleChecked(li));
+}
 
-	function toggleChecked() {
-		li.classList.toggle('checked');
-	}
+function toggleChecked(li) {
+	li.classList.toggle('checked');
 }
