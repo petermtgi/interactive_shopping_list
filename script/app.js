@@ -1,4 +1,4 @@
-const shoppingList = [];
+const shoppingList = ['Nderema', 'Omena', 'Boba Tea'];
 
 //  Utility functions for DOM manipulation
 function createAnElement(element) {
@@ -36,18 +36,41 @@ function displayItems() {
 	shoppingList.forEach(createAListItem);
 }
 
-function createAListItem(item) {
+function createAListItem(item, index) {
 	// const li = document.createElement('li');
 	const li = createAnElement('li');
 
 	// li.innerText = item
 	addText(li, item);
 
+	const button = createAnElement('button');
+	addText(button, 'X');
+	appendChild(li, button);
+
+	// button.setAttribute('class', 'del');
+	addAttribute(button, 'class', 'del');
+
+	// listen(button, 'click', () => deleteSingleItem(index));
+
+	listen(button, 'click', () => deleteSingleItem(li));
+
 	// ol.appendChild(li)
 	appendChild(ol, li);
 
 	// li.addEventListener('click', () => toggleChecked(li));
 	listen(li, 'click', () => toggleChecked(li));
+}
+
+/*
+function deleteSingleItem(arrayIndex) {
+	delete shoppingList[arrayIndex];
+	
+	displayItems();
+}
+*/
+
+function deleteSingleItem(li) {
+	li.remove();
 }
 
 function toggleChecked(li) {
